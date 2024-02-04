@@ -1,0 +1,38 @@
+<script setup>
+import { defineProps } from 'vue';
+
+const {name, image, seriesItems} = defineProps(['name', 'image','seriesItems']);
+
+</script>
+
+<template>
+    <NCard>
+        <template #cover>
+          <img :src="image">
+        </template>
+        <h3>{{ name }}</h3>
+        <p v-for="(series, index) in seriesItems.slice(0, 3)" :key="index">
+            {{ series.name }}<span v-if="index < seriesItems.length - 1">,&nbsp;</span>
+        </p>
+    </NCard>
+</template>
+
+<style scoped>
+.n-card {
+    width: 200px;
+    margin:10px 20px;
+
+}
+.n-card img {
+    height: 250px;
+}
+
+p {
+    font-size: 10px;
+}
+
+.jobs {
+    display: flex;
+    flex-wrap: wrap;
+}
+</style>
